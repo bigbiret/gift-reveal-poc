@@ -1,0 +1,694 @@
+// Variables
+:root {
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --background: #ffffff;
+  --border-color: #e0e0e0;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --border-radius: 12px;
+  --animation-duration: 0.3s;
+}
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Base
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--background);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.5;
+}
+
+#app {
+  width: 100%;
+}
+
+// Loading State
+.loader {
+  text-align: center;
+  color: var(--text-primary);
+  padding: 40px;
+
+  .loader-spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--text-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+  }
+
+  p {
+    font-size: 16px;
+    color: var(--text-secondary);
+  }
+}
+
+// Homepage
+.homepage {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    text-align: left;
+    color: var(--text-secondary);
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+  }
+
+  .engine-section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: #fafafa;
+    border-radius: var(--border-radius);
+  }
+
+  .test-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .test-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--background);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all var(--animation-duration) ease;
+
+    &:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    &.anime {
+      border-left: 4px solid #ff1744;
+
+      &:hover {
+        border-left-color: #d50000;
+      }
+    }
+
+    .link-label {
+      font-weight: 500;
+    }
+
+    .link-code {
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 12px;
+      color: var(--text-secondary);
+      background: #f5f5f5;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+  }
+}
+
+// Gift Reveal Container
+.gift-reveal-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+// Gift Header
+.gift-header {
+  text-align: center;
+  margin-bottom: 40px;
+
+  .sender-text {
+    font-size: 18px;
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+  }
+}
+
+// Gift Box Wrapper
+.gift-box-wrapper {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin: 0 auto;
+  cursor: pointer;
+  user-select: none;
+
+  #animation-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+// Simple CSS Gift Box
+.gift-box {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+
+  .gift-box-body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .gift-box-lid {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background: #e0e0e0;
+    border-radius: 8px 8px 0 0;
+    top: -15px;
+    left: 0;
+    transform-origin: center bottom;
+    transition: transform 0.5s ease;
+    box-shadow: var(--shadow-md);
+  }
+
+  .gift-box-ribbon-vertical,
+  .gift-box-ribbon-horizontal {
+    position: absolute;
+    background: #888;
+  }
+
+  .gift-box-ribbon-vertical {
+    width: 20px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .gift-box-ribbon-horizontal {
+    width: 100%;
+    height: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .gift-box-bow {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #888;
+    border-radius: 50%;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .gift-box-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  // Animation states
+  &.shake {
+    animation: shake 0.5s ease;
+  }
+
+  &.unwrap {
+    .gift-box-lid {
+      transform: rotateX(-25deg);
+    }
+  }
+
+  &.reveal {
+    .gift-box-lid {
+      transform: rotateX(-90deg) translateY(-100px);
+      opacity: 0;
+    }
+    .gift-box-inner {
+      opacity: 1;
+    }
+    .gift-box-ribbon-vertical,
+    .gift-box-ribbon-horizontal,
+    .gift-box-bow {
+      opacity: 0;
+    }
+  }
+}
+
+// Tap Indicator
+.tap-indicator {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--background);
+  padding: 8px 20px;
+  border-radius: 30px;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  .tap-count {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: var(--text-primary);
+    color: var(--background);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 600;
+    margin-right: 8px;
+    font-size: 14px;
+  }
+
+  .tap-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+}
+
+// Gift Content
+.gift-content {
+  text-align: center;
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 420px;
+  padding: 0 20px;
+  z-index: 10;
+
+  &.fade-in {
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.3s;
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
+
+// Gift Card
+.gift-card {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  padding: 40px 32px;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+
+  .vendor-info {
+    margin-bottom: 24px;
+
+    .vendor-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .placeholder-logo {
+      width: 80px;
+      height: 80px;
+      background: var(--border-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: bold;
+      color: var(--text-secondary);
+    }
+
+    .vendor-name {
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+
+  .gift-amount {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .message-card {
+    background: #fafafa;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 24px 0;
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .sender {
+      display: block;
+      text-align: right;
+      color: var(--text-secondary);
+      font-style: italic;
+      font-size: 14px;
+    }
+  }
+}
+
+// CTA Button
+.cta-button {
+  background: var(--text-primary);
+  color: var(--background);
+  border: none;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all var(--animation-duration) ease;
+  margin-top: 24px;
+  display: inline-block;
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Status Containers
+.status-container {
+  background: var(--background);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+
+  .status-icon {
+    font-size: 64px;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+  20%, 40%, 60%, 80% { transform: translateX(8px); }
+}
+
+// Responsive
+@media (max-width: 480px) {
+  .gift-box-wrapper {
+    width: 240px;
+    height: 240px;
+  }
+
+  .gift-box {
+    width: 160px;
+    height: 160px;
+  }
+
+  .gift-card {
+    max-width: 340px;
+    padding: 32px 24px;
+
+    .gift-amount {
+      font-size: 36px;
+    }
+  }
+
+  .homepage {
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+  .status-container {
+    padding: 24px;
+    margin: 20px;
+  }
+}
+
+// Anime.js Gift Animation
+.anime-gift-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.anime-gift-box {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.anime-gift-body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.anime-gift-lid {
+  position: absolute;
+  width: 110%;
+  height: 40px;
+  background: #e0e0e0;
+  border-radius: 12px 12px 0 0;
+  top: -20px;
+  left: -5%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  transform-style: preserve-3d;
+}
+
+.anime-ribbon-vertical {
+  position: absolute;
+  width: 24px;
+  height: calc(100% + 40px);
+  background: #888;
+  left: 50%;
+  top: -20px;
+  transform: translateX(-50%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.anime-ribbon-horizontal {
+  position: absolute;
+  width: 100%;
+  height: 24px;
+  background: #888;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.anime-bow {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #888;
+  border-radius: 50%;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: inherit;
+    border-radius: 50%;
+    top: 10px;
+  }
+
+  &::before {
+    left: -20px;
+  }
+
+  &::after {
+    right: -20px;
+  }
+}
+
+.anime-gift-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  opacity: 0;
+  transform: scale(0);
+  z-index: 10;
+}
+
+// Sparkle effects for anime.js
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+  box-shadow: 0 0 10px currentColor;
+
+  &.sparkle-0 {
+    top: 10%;
+    left: 50%;
+  }
+
+  &.sparkle-1 {
+    top: 30%;
+    right: 10%;
+  }
+
+  &.sparkle-2 {
+    top: 50%;
+    right: 5%;
+  }
+
+  &.sparkle-3 {
+    bottom: 30%;
+    right: 10%;
+  }
+
+  &.sparkle-4 {
+    bottom: 30%;
+    left: 10%;
+  }
+
+  &.sparkle-5 {
+    top: 30%;
+    left: 10%;
+  }
+}
+
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

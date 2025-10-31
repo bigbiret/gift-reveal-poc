@@ -1,0 +1,56 @@
+{
+  "TEST1234": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "vendorName": "H&M",
+    "vendorLogoUrl": "/images/vendors/placeholder-logo.svg",
+    "amount": 500,
+    "currency": "NOK",
+    "personalMessage": "Gratulerer med dagen! Håper du finner noe fint 🎉",
+    "senderName": "Kari Nordmann",
+    "animationType": "birthday",
+    "expiryDate": "2025-12-31",
+    "isOpened": false,
+    "isActivated": false
+  },
+  "TESTUSED": {
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "vendorName": "Zalando",
+    "vendorLogoUrl": "/images/vendors/placeholder-logo.svg",
+    "amount": 1000,
+    "currency": "NOK",
+    "senderName": "Per Hansen",
+    "animationType": "generic",
+    "isOpened": true,
+    "isActivated": true
+  },
+  "TESTBRYL": {
+    "id": "550e8400-e29b-41d4-a716-446655440002",
+    "vendorName": "Kitchn",
+    "vendorLogoUrl": "/images/vendors/placeholder-logo.svg",
+    "amount": 2500,
+    "currency": "NOK",
+    "personalMessage": "Gratulerer med bryllupet! ❤️",
+    "senderName": "Familie Olsen",
+    "animationType": "wedding",
+    "isOpened": false,
+    "isActivated": false
+  },
+  "TESTERR1": {
+    "error": "Dette gavekortet finnes ikke"
+  },
+  "TESTEXP1": {
+    "error": "Dette gavekortet har utløpt"
+  },
+  "default": {
+    "id": "550e8400-e29b-41d4-a716-446655440099",
+    "vendorName": "XXL",
+    "vendorLogoUrl": "/images/vendors/placeholder-logo.svg",
+    "amount": 750,
+    "currency": "NOK",
+    "personalMessage": "Til deg!",
+    "senderName": "En venn",
+    "animationType": "generic",
+    "isOpened": false,
+    "isActivated": false
+  }
+}

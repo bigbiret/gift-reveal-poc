@@ -1,0 +1,134 @@
+import { gsap } from 'gsap';
+
+export class GSAPGiftAnimation {
+  private container: HTMLElement;
+  private box!: HTMLElement;
+  private lid!: HTMLElement;
+  private ribbon!: HTMLElement;
+
+  constructor(container: HTMLElement) {
+    this.container = container;
+  }
+
+  async load(_type: 'birthday' | 'wedding' | 'generic'): Promise<void> {
+    // Lag HTML-struktur med CSS
+    this.container.innerHTML = `
+      <div class="gsap-gift-box">
+        <div class="gift-lid"></div>
+        <div class="gift-body"></div>
+        <div class="gift-ribbon-v"></div>
+        <div class="gift-ribbon-h"></div>
+        <div class="gift-bow"></div>
+      </div>
+    `;
+
+    this.box = this.container.querySelector('.gsap-gift-box')!;
+    this.lid = this.container.querySelector('.gift-lid')!;
+    this.ribbon = this.container.querySelector('.gift-ribbon-v')!;
+
+    return Promise.resolve();
+  }
+
+  async playShake(): Promise<void> {
+    // Shake animasjon med GSAP
+    return gsap.to(this.box, {
+      rotation: 5,
+      duration: 0.1,
+      repeat: 5,
+      yoyo: true,
+      ease: 'power1.inOut'
+    }).then();
+  }
+
+  async playUnwrap(): Promise<void> {
+    // Unwrap - lokket begynner å åpne
+    return gsap.to(this.lid, {
+      y: -50,
+      rotationX: -25,
+      duration: 0.8,
+      ease: 'back.out(1.2)'
+    }).then();
+  }
+
+  async playReveal(): Promise<void> {
+    // Reveal - lokket flyr av!
+    const timeline = gsap.timeline();
+
+    timeline
+      .to(this.lid, {
+        y: -150,
+        rotationX: -90,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.in'
+      })
+      .to(this.ribbon, {
+        opacity: 0,
+        scale: 0.5,
+        duration: 0.5
+      }, '-=0.5'); // Overlap
+
+    return timeline.then();
+  }
+
+  destroy(): void {
+    gsap.killTweensOf([this.box, this.lid, this.ribbon]);
+  }
+}
+
+// CSS som trengs (legg i main.scss):
+/*
+.gsap-gift-box {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+}
+
+.gift-body {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.gift-lid {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  background: #e0e0e0;
+  border-radius: 8px 8px 0 0;
+  top: -15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.gift-ribbon-v {
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  background: #888;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gift-ribbon-h {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  background: #888;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gift-bow {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #888;
+  border-radius: 50%;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+*/
