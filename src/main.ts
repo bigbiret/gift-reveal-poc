@@ -15,8 +15,8 @@ class App {
   }
 
   private initializeRoutes(): void {
-    // Gift reveal route: /g/{code}
-    this.router.register(/^\/g\/([a-zA-Z0-9]{8})$/, async (match: RegExpMatchArray) => {
+    // Gift reveal route: /g/{code} - supports codes between 4-12 characters
+    this.router.register(/^\/g\/([a-zA-Z0-9]{4,12})$/, async (match: RegExpMatchArray) => {
       const code = match[1];
 
       const controller = new GiftRevealController(
@@ -26,8 +26,8 @@ class App {
       await controller.initialize(code);
     });
 
-    // Default/home route
-    this.router.register(/^\/$/, () => {
+    // Default/home route - match / or empty
+    this.router.register(/^\/?$/, () => {
       this.showHomepage();
     });
 
@@ -50,13 +50,21 @@ class App {
               <span class="link-label">🎂 Bursdagsgave</span>
               <span class="link-code">TEST1234</span>
             </a>
+            <a href="/g/TESTFAR" class="test-link anime">
+              <span class="link-label">👔 Farsdag</span>
+              <span class="link-code">TESTFAR</span>
+            </a>
             <a href="/g/TESTBRYL" class="test-link anime">
-              <span class="link-label">💒 Bryllupsgave</span>
+              <span class="link-label">💍 Bryllupsgave (Ring)</span>
               <span class="link-code">TESTBRYL</span>
+            </a>
+            <a href="/g/TESTBAL" class="test-link anime">
+              <span class="link-label">🎈 Ballong (Sprekker!)</span>
+              <span class="link-code">TESTBAL</span>
             </a>
           </div>
           <p style="margin-top: 16px; font-size: 14px; color: #666;">
-            <strong>Ett trykk:</strong> Sløyfe knytes opp → Alt fades bort → Sparkles + konfetti → Gavekort fades inn!
+            <strong>Hver animasjon er unik!</strong> Bursdagsgave har gaveboks, Farsdag har maskulin boks, Bryllup har ringboks med diamant, Ballong sprekker! ✨
           </p>
         </div>
 

@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "animejs": "^3.2.2",
-    "canvas-confetti": "^1.9.3",
-    "lottie-web": "^5.12.2"
+    "canvas-confetti": "^1.9.3"
   },
   "devDependencies": {
     "@types/animejs": "^3.1.13",

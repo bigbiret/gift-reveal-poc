@@ -538,8 +538,8 @@ body {
   }
 }
 
-// Anime.js Gift Animation
-.anime-gift-container {
+// Birthday Theme - Gift Box Animation
+.birthday-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -547,7 +547,7 @@ body {
   justify-content: center;
 }
 
-.anime-gift-box {
+.birthday-box {
   position: relative;
   width: 200px;
   height: 200px;
@@ -555,7 +555,7 @@ body {
   perspective: 1000px;
 }
 
-.anime-gift-body {
+.birthday-body {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -565,7 +565,7 @@ body {
   border: 2px solid rgba(0, 0, 0, 0.05);
 }
 
-.anime-gift-lid {
+.birthday-lid {
   position: absolute;
   width: 110%;
   height: 40px;
@@ -578,7 +578,7 @@ body {
   transform-style: preserve-3d;
 }
 
-.anime-ribbon-vertical {
+.birthday-ribbon-vertical {
   position: absolute;
   width: 24px;
   height: calc(100% + 40px);
@@ -589,7 +589,7 @@ body {
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.anime-ribbon-horizontal {
+.birthday-ribbon-horizontal {
   position: absolute;
   width: 100%;
   height: 24px;
@@ -599,7 +599,7 @@ body {
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.anime-bow {
+.birthday-bow {
   position: absolute;
   width: 50px;
   height: 50px;
@@ -630,17 +630,354 @@ body {
   }
 }
 
-.anime-gift-inner {
-  position: absolute;
+// Father's Day Theme - Toolbox/Gift Box Animation
+.fathersday-container {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 64px;
+}
+
+.fathersday-box {
+  position: relative;
+  width: 220px;
+  height: 180px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.fathersday-body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #2C3E50;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  border: 3px solid rgba(0, 0, 0, 0.1);
+}
+
+.fathersday-lid {
+  position: absolute;
+  width: 110%;
+  height: 35px;
+  background: #34495E;
+  border-radius: 8px 8px 0 0;
+  top: -18px;
+  left: -5%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+}
+
+.fathersday-ribbon-vertical {
+  position: absolute;
+  width: 20px;
+  height: calc(100% + 35px);
+  background: #8B4513;
+  left: 50%;
+  top: -18px;
+  transform: translateX(-50%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.fathersday-ribbon-horizontal {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  background: #8B4513;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.fathersday-bow {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  background: #8B4513;
+  border-radius: 50%;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: inherit;
+    border-radius: 50%;
+    top: 8px;
+  }
+
+  &::before {
+    left: -18px;
+  }
+
+  &::after {
+    right: -18px;
+  }
+}
+
+// Wedding Theme - Ring Box Animation (Jewelry Box Style)
+.wedding-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wedding-box {
+  position: relative;
+  width: 160px;
+  height: 140px;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+// Bottom half of ring box
+.wedding-box-bottom {
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  bottom: 0;
+  background: linear-gradient(180deg, #4A0E0E 0%, #2D0A0A 100%);
+  border-radius: 8px;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    inset 0 -2px 8px rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(139, 69, 19, 0.3);
+
+  // Inner felt/cushion area
+  &::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    background: linear-gradient(135deg, #FFE4E1 0%, #FFD1DC 100%);
+    border-radius: 4px;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Top lid of ring box (hinged at back)
+.wedding-box-lid {
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  bottom: 70px;
+  background: linear-gradient(180deg, #5D1F1F 0%, #4A0E0E 100%);
+  border-radius: 8px 8px 4px 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(139, 69, 19, 0.3);
+  transform-origin: bottom center;
+  transform-style: preserve-3d;
+
+  // Decorative gold trim
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #FFD700, transparent);
+    border-radius: 2px;
+  }
+}
+
+// Cushion/pillow for ring
+.wedding-cushion {
+  position: absolute;
+  width: 70px;
+  height: 50px;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #FFF5F5 0%, #FFE4E1 100%);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 3px 10px rgba(0, 0, 0, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+
+  // Diamond pattern on cushion
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 1px;
+    background: rgba(255, 182, 193, 0.3);
+  }
+
+  &::after {
+    width: 1px;
+    height: 80%;
+  }
+}
+
+// The ring itself
+.wedding-ring {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 5px solid #FFD700;
+  border-radius: 50%;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -25px; // Half of width (50px / 2) for perfect centering
+  box-shadow:
+    0 0 20px rgba(255, 215, 0, 0.6),
+    inset 0 0 10px rgba(255, 215, 0, 0.3);
+
+  // Enable smooth transforms
+  will-change: transform;
+  transform-style: preserve-3d;
+
+  // Diamond on top of ring
+  &::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, #FFFFFF 0%, #E0E0E0 100%);
+    border-radius: 50%;
+    top: -5px;
+    left: 50%;
+    margin-left: -5px; // Center without transform to avoid conflicts
+    box-shadow:
+      0 0 15px rgba(255, 255, 255, 0.9),
+      0 0 30px rgba(255, 255, 255, 0.5);
+  }
+
+  // Diamond shine effect
+  &::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    top: -7px;
+    left: calc(50% - 3px);
+    box-shadow: 0 0 8px white;
+  }
+}
+
+.wedding-petal {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #FFB6C1 0%, #FF69B4 100%);
+  border-radius: 50% 0 50% 0;
   opacity: 0;
   transform: scale(0);
-  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(255, 105, 180, 0.3);
+}
+
+// Balloon Theme - Balloon Pop Animation
+.balloon-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 40px; // Space for string
+}
+
+.balloon-main {
+  position: relative;
+  width: 140px;
+  height: 180px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+// The balloon itself
+.balloon-balloon {
+  position: absolute;
+  width: 140px;
+  height: 180px;
+  background: linear-gradient(135deg, #FF6B9D 0%, #C44569 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow:
+    inset -15px -15px 30px rgba(0, 0, 0, 0.2),
+    inset 15px 15px 30px rgba(255, 255, 255, 0.3),
+    0 10px 40px rgba(196, 69, 105, 0.4);
+  will-change: transform;
+
+  // Shine/highlight on balloon
+  &::before {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 50px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    top: 25px;
+    left: 25px;
+  }
+
+  // Bottom knot
+  &::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: linear-gradient(135deg, #C44569 0%, #8E2F4E 100%);
+    border-radius: 50%;
+    bottom: -8px;
+    left: 50%;
+    margin-left: -7.5px;
+  }
+}
+
+// Balloon string
+.balloon-string {
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(180deg, #8E2F4E 0%, #6B2339 100%);
+  bottom: -88px;
+  left: 50%;
+  margin-left: -1px;
+  transform-origin: top center;
+
+  // String curl at bottom
+  &::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #6B2339;
+    border-radius: 50%;
+    bottom: -25px;
+    left: -11px;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    transform: rotate(-45deg);
+  }
+}
+
+// Balloon fragments when it pops
+.balloon-fragment {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #FF6B9D 0%, #C44569 100%);
+  border-radius: 50% 0;
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
 // Sparkle effects for anime.js

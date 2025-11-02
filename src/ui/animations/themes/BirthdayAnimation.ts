@@ -1,6 +1,11 @@
 import anime from 'animejs';
+import { IGiftAnimation } from '../base/IGiftAnimation';
 
-export class AnimeGiftAnimation {
+/**
+ * Birthday-themed gift reveal animation
+ * Pink and gold color scheme with festive sparkle effects
+ */
+export class BirthdayAnimation implements IGiftAnimation {
   private container: HTMLElement | null = null;
   private box!: HTMLElement;
   private lid!: HTMLElement;
@@ -10,44 +15,43 @@ export class AnimeGiftAnimation {
   private sparkles: HTMLElement[] = [];
   private idleAnimation: any = null;
 
-  async load(container: HTMLElement, type: 'birthday' | 'wedding' | 'generic'): Promise<void> {
+  // Birthday color theme - pink and gold
+  private readonly colors = {
+    box: '#FFB6C1',      // Light pink
+    lid: '#FF69B4',      // Hot pink
+    ribbon: '#FF1493',   // Deep pink
+    sparkle: '#FFD700'   // Gold
+  };
+
+  async load(container: HTMLElement): Promise<void> {
     this.container = container;
 
-    // Theme colors - focus on birthday
-    const themes = {
-      birthday: { box: '#FFB6C1', lid: '#FF69B4', ribbon: '#FF1493', sparkle: '#FFD700' },
-      wedding: { box: '#FFF0F5', lid: '#FFE4E1', ribbon: '#C0C0C0', sparkle: '#FFFFFF' },
-      generic: { box: '#F0F0F0', lid: '#E0E0E0', ribbon: '#888888', sparkle: '#CCCCCC' }
-    };
-
-    const colors = themes[type];
-
-    // Lag HTML-struktur med sparkle effekter
+    // Create HTML structure with sparkle effects
     this.container.innerHTML = `
-      <div class="anime-gift-container">
-        <div class="anime-gift-box">
-          <div class="anime-gift-body" style="background: ${colors.box}"></div>
-          <div class="anime-gift-lid" style="background: ${colors.lid}"></div>
-          <div class="anime-ribbon-vertical" style="background: ${colors.ribbon}"></div>
-          <div class="anime-ribbon-horizontal" style="background: ${colors.ribbon}"></div>
-          <div class="anime-bow" style="background: ${colors.ribbon}"></div>
+      <div class="birthday-container">
+        <div class="birthday-box">
+          <div class="birthday-body" style="background: ${this.colors.box}"></div>
+          <div class="birthday-lid" style="background: ${this.colors.lid}"></div>
+          <div class="birthday-ribbon-vertical" style="background: ${this.colors.ribbon}"></div>
+          <div class="birthday-ribbon-horizontal" style="background: ${this.colors.ribbon}"></div>
+          <div class="birthday-bow" style="background: ${this.colors.ribbon}"></div>
           ${[...Array(6)].map((_, i) => `
-            <div class="sparkle sparkle-${i}" style="background: ${colors.sparkle}"></div>
+            <div class="sparkle sparkle-${i}" style="background: ${this.colors.sparkle}"></div>
           `).join('')}
         </div>
       </div>
     `;
 
-    this.box = this.container.querySelector('.anime-gift-box')!;
-    this.lid = this.container.querySelector('.anime-gift-lid')!;
-    this.ribbonV = this.container.querySelector('.anime-ribbon-vertical')!;
-    this.ribbonH = this.container.querySelector('.anime-ribbon-horizontal')!;
-    this.bow = this.container.querySelector('.anime-bow')!;
+    this.box = this.container.querySelector('.birthday-box')!;
+    this.lid = this.container.querySelector('.birthday-lid')!;
+    this.ribbonV = this.container.querySelector('.birthday-ribbon-vertical')!;
+    this.ribbonH = this.container.querySelector('.birthday-ribbon-horizontal')!;
+    this.bow = this.container.querySelector('.birthday-bow')!
 
-    // Samle alle sparkles
+    // Collect all sparkles
     this.sparkles = Array.from(this.container.querySelectorAll('.sparkle'));
 
-    console.log('[Anime.js] Birthday animation loaded');
+    console.log('[Birthday Animation] Loaded with pink and gold theme');
     return Promise.resolve();
   }
 
@@ -71,25 +75,15 @@ export class AnimeGiftAnimation {
     }
   }
 
-  async playShake(): Promise<void> {
-    // Ikke i bruk lenger
-    return Promise.resolve();
-  }
-
-  async playUnwrap(): Promise<void> {
-    // Ikke i bruk lenger - alt skjer i reveal
-    return Promise.resolve();
-  }
-
   async playReveal(): Promise<void> {
-    console.log('[Anime.js] Playing simple reveal sequence');
+    console.log('[Birthday Animation] Playing reveal sequence');
 
     // Stop idle animation
     this.stopIdle();
 
-    // SEKVENS: Sløyfe opp → Lokk + Box fades bort → Content fades inn
+    // SEQUENCE: Bow flies up → Ribbons fly away → Lid + Box fade → Sparkles explode
 
-    // 1. Sløyfe knytes HELT opp og flyr ut av vinduet (0-800ms)
+    // 1. Bow unties and flies out of view (0-800ms)
     anime({
       targets: this.bow,
       translateY: [0, -20, -60, -120, -250, -400],
@@ -101,7 +95,7 @@ export class AnimeGiftAnimation {
       easing: 'easeInCubic'
     });
 
-    // 2a. Vertikalt bånd flyr oppover ut (0-700ms)
+    // 2a. Vertical ribbon flies upward (0-700ms)
     anime({
       targets: this.ribbonV,
       translateY: [0, -50, -120, -220, -350],
@@ -112,7 +106,7 @@ export class AnimeGiftAnimation {
       easing: 'easeInCubic'
     });
 
-    // 2b. Horisontalt bånd flyr til siden (0-700ms)
+    // 2b. Horizontal ribbon flies to the side (0-700ms)
     anime({
       targets: this.ribbonH,
       translateX: [0, 30, 80, 150, 250],
@@ -124,10 +118,10 @@ export class AnimeGiftAnimation {
       easing: 'easeInCubic'
     });
 
-    // Vent på at sløyfe flyr ut og bånd er borte
+    // Wait for bow to fly out and ribbons to disappear
     await new Promise(resolve => setTimeout(resolve, 700));
 
-    // 3. Lokket flyr av SAMTIDIG som hele boksen fader bort (600-1200ms)
+    // 3. Lid flies off while box fades (600-1200ms)
     anime({
       targets: this.lid,
       translateY: -350,
@@ -138,15 +132,15 @@ export class AnimeGiftAnimation {
       easing: 'easeInCubic'
     });
 
-    // Gift box body fader subtilt bort mens lokket flyr
+    // Gift box body fades subtly while lid flies
     anime({
-      targets: this.box.querySelector('.anime-gift-body'),
+      targets: this.box.querySelector('.birthday-body'),
       opacity: 0,
       duration: 600,
       easing: 'easeOutQuad'
     });
 
-    // 4. SPARKLES EKSPLODERER når lokket flyr (800ms)
+    // 4. SPARKLES EXPLODE when lid flies (800ms)
     await new Promise(resolve => setTimeout(resolve, 200));
 
     this.sparkles.forEach((sparkle, i) => {
@@ -163,13 +157,13 @@ export class AnimeGiftAnimation {
       });
     });
 
-    // Vent litt til - gift content kommer nå
+    // Wait a bit - gift content comes now
     await new Promise(resolve => setTimeout(resolve, 400));
     return Promise.resolve();
   }
 
   destroy(): void {
-    // Fjern alle animasjoner
+    // Remove all animations
     anime.remove(this.box);
     anime.remove(this.lid);
     anime.remove(this.ribbonV);

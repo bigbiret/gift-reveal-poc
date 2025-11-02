@@ -28,21 +28,31 @@ export class Router {
       cleanPath = path.slice(this.basePath.length);
     }
 
-    // Ensure leading slash
-    if (!cleanPath.startsWith('/')) {
+    // Ensure leading slash, handle empty path
+    if (!cleanPath || cleanPath === '') {
+      cleanPath = '/';
+    } else if (!cleanPath.startsWith('/')) {
       cleanPath = `/${cleanPath}`;
     }
+
+    console.log('[Router] Navigate:', {
+      originalPath: path,
+      basePath: this.basePath,
+      cleanPath,
+      routes: this.routes.length
+    });
 
     for (const route of this.routes) {
       const match = cleanPath.match(route.pattern);
       if (match) {
+        console.log('[Router] Matched route:', route.pattern);
         await route.handler(match);
         return;
       }
     }
 
     // No matching route found
-    console.warn(`No route found for path: ${path}`);
+    console.warn(`[Router] No route found for path: ${path} (clean: ${cleanPath})`);
   }
 
   getCurrentPath(): string {

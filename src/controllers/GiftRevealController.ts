@@ -1,7 +1,6 @@
 import { Gift, RevealState } from '../core/models/gift.model';
 import { IGiftService } from '../core/services/gift.service';
-import { AnimeGiftAnimation } from '../ui/animations/AnimeGiftAnimation';
-import { ConfettiEffect } from '../ui/components/Confetti';
+import { AnimationFactory, IGiftAnimation, ConfettiEffect } from '../ui/animations';
 
 export class GiftRevealController {
   private state: RevealState = {
@@ -9,7 +8,7 @@ export class GiftRevealController {
     tapsRemaining: 1,
     animationProgress: 0
   };
-  private animation: AnimeGiftAnimation | null = null;
+  private animation: IGiftAnimation | null = null;
 
   constructor(
     private container: HTMLElement,
@@ -81,13 +80,12 @@ export class GiftRevealController {
       </div>
     `;
 
-    // Load Anime.js animation
-    this.animation = new AnimeGiftAnimation();
-    console.log('Using Anime.js animation engine');
+    // Create animation using factory based on gift type
+    this.animation = AnimationFactory.create(gift.animationType as any);
+    console.log(`Using ${gift.animationType} animation theme`);
 
     await this.animation.load(
-      document.getElementById('animation-container')!,
-      gift.animationType
+      document.getElementById('animation-container')!
     );
 
     // Start idle animation to invite interaction

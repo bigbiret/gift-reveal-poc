@@ -35,6 +35,30 @@
     "isOpened": false,
     "isActivated": false
   },
+  "TESTFAR": {
+    "id": "550e8400-e29b-41d4-a716-446655440003",
+    "vendorName": "Europris",
+    "vendorLogoUrl": "/images/vendors/placeholder-logo.svg",
+    "amount": 800,
+    "currency": "NOK",
+    "personalMessage": "Til verdens beste pappa! 👔",
+    "senderName": "Barna",
+    "animationType": "fathersday",
+    "isOpened": false,
+    "isActivated": false
+  },
+  "TESTBAL": {
+    "id": "550e8400-e29b-41d4-a716-446655440004",
+    "vendorName": "Lekebutikken",
+    "vendorLogoUrl": "/images/vendors/placeholder-logo.svg",
+    "amount": 350,
+    "currency": "NOK",
+    "personalMessage": "Gratulerer med dagen! 🎈",
+    "senderName": "Bestemor",
+    "animationType": "balloon",
+    "isOpened": false,
+    "isActivated": false
+  },
   "TESTERR1": {
     "error": "Dette gavekortet finnes ikke"
   },
