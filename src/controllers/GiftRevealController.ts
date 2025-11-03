@@ -1,6 +1,6 @@
 import { Gift, RevealState } from '../core/models/gift.model';
 import { IGiftService } from '../core/services/gift.service';
-import { AnimationFactory, IGiftAnimation, ConfettiEffect } from '../ui/animations';
+import { AnimationFactory, IGiftAnimation, ConfettiEffect, SnowflakeEffect } from '../ui/animations';
 
 export class GiftRevealController {
   private state: RevealState = {
@@ -9,6 +9,7 @@ export class GiftRevealController {
     animationProgress: 0
   };
   private animation: IGiftAnimation | null = null;
+  private currentGift: Gift | null = null;
 
   constructor(
     private container: HTMLElement,
@@ -43,6 +44,7 @@ export class GiftRevealController {
   }
 
   private async renderGiftBox(gift: Gift): Promise<void> {
+    this.currentGift = gift; // Store gift for later use
     this.container.innerHTML = `
       <div class="gift-reveal-container">
         <div class="gift-header">
@@ -136,10 +138,17 @@ export class GiftRevealController {
     // Start the reveal animation sequence
     const revealPromise = this.animation.playReveal();
 
-    // Trigger confetti when lid flies off and sparkles start: ~900ms
+    // Trigger confetti/snowflakes when lid flies off: ~900ms
     setTimeout(() => {
-      const confetti = new ConfettiEffect();
-      confetti.burst();
+      if (this.currentGift?.animationType === 'christmas') {
+        // Use canvas snowflakes for Christmas theme
+        const snowflakes = new SnowflakeEffect();
+        snowflakes.winterMagic(); // Gold stars + white snowflakes
+      } else {
+        // Use regular confetti for other themes
+        const confetti = new ConfettiEffect();
+        confetti.burst();
+      }
     }, 900);
 
     // Gift content fades in after box animation: ~1300ms

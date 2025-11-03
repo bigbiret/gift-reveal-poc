@@ -1022,6 +1022,157 @@ body {
   }
 }
 
+// Christmas Theme - Festive Gift with Star and Snowflakes
+.christmas-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.christmas-box {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.christmas-body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #C41E3A; // Christmas red
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(196, 30, 58, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.christmas-lid {
+  position: absolute;
+  width: 110%;
+  height: 40px;
+  background: #165B33; // Christmas green
+  border-radius: 12px 12px 0 0;
+  top: -20px;
+  left: -5%;
+  box-shadow: 0 5px 20px rgba(22, 91, 51, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+}
+
+.christmas-ribbon-vertical {
+  position: absolute;
+  width: 24px;
+  height: calc(100% + 40px);
+  background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%);
+  left: 50%;
+  top: -20px;
+  transform: translateX(-50%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.christmas-ribbon-horizontal {
+  position: absolute;
+  width: 100%;
+  height: 24px;
+  background: linear-gradient(180deg, #FFD700 0%, #FFA500 100%);
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.christmas-bow {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  border-radius: 50%;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 3px 15px rgba(255, 215, 0, 0.5);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: inherit;
+    border-radius: 50%;
+    top: 10px;
+  }
+
+  &::before {
+    left: -20px;
+  }
+
+  &::after {
+    right: -20px;
+  }
+}
+
+// Christmas star on top of the gift - BIG and shiny!
+.christmas-star {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background: #FFD700;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  box-shadow:
+    0 0 30px rgba(255, 215, 0, 1),
+    0 0 60px rgba(255, 215, 0, 0.7),
+    0 0 90px rgba(255, 215, 0, 0.4);
+  filter: drop-shadow(0 6px 12px rgba(255, 215, 0, 0.6));
+  will-change: transform, opacity;
+
+  // Twinkle effect with inner glow
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, transparent 70%);
+    clip-path: inherit;
+  }
+}
+
+// Snowflakes falling from the gift - gentle and beautiful
+.snowflake {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  color: white;
+  font-size: 28px;
+  opacity: 0;
+  will-change: transform, opacity;
+  pointer-events: none;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.9),
+    0 0 15px rgba(255, 255, 255, 0.6),
+    0 0 25px rgba(200, 230, 255, 0.4);
+  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3));
+
+  // Position snowflakes at top initially
+  top: -30px;
+  left: 50%;
+}
+
 // Accessibility
 @media (prefers-reduced-motion: reduce) {
   * {

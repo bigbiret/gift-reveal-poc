@@ -62,9 +62,13 @@ class App {
               <span class="link-label">🎈 Ballong (Sprekker!)</span>
               <span class="link-code">TESTBAL</span>
             </a>
+            <a href="/g/TESTJUL" class="test-link anime" style="background: linear-gradient(135deg, #C41E3A 0%, #165B33 100%); color: white;">
+              <span class="link-label">🎄 Julegave (Stjerne!)</span>
+              <span class="link-code">TESTJUL</span>
+            </a>
           </div>
           <p style="margin-top: 16px; font-size: 14px; color: #666;">
-            <strong>Hver animasjon er unik!</strong> Bursdagsgave har gaveboks, Farsdag har maskulin boks, Bryllup har ringboks med diamant, Ballong sprekker! ✨
+            <strong>Hver animasjon er unik!</strong> Bursdagsgave har gaveboks, Farsdag har maskulin boks, Bryllup har ringboks med diamant, Ballong sprekker, Julegave har stjerne og snø! 🎄✨
           </p>
         </div>
 

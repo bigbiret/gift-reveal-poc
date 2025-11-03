@@ -15,6 +15,8 @@ export { BirthdayAnimation } from './themes/BirthdayAnimation';
 export { FathersDayAnimation } from './themes/FathersDayAnimation';
 export { WeddingAnimation } from './themes/WeddingAnimation';
 export { BalloonAnimation } from './themes/BalloonAnimation';
+export { ChristmasAnimation } from './themes/ChristmasAnimation';
 
 // Effects
 export { ConfettiEffect } from './effects/Confetti';
+export { SnowflakeEffect } from './effects/Snowflake';

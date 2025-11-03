@@ -3,11 +3,12 @@ import { BirthdayAnimation } from './themes/BirthdayAnimation';
 import { FathersDayAnimation } from './themes/FathersDayAnimation';
 import { WeddingAnimation } from './themes/WeddingAnimation';
 import { BalloonAnimation } from './themes/BalloonAnimation';
+import { ChristmasAnimation } from './themes/ChristmasAnimation';
 
 /**
  * Supported animation theme types
  */
-export type AnimationTheme = 'birthday' | 'fathersday' | 'wedding' | 'balloon' | 'generic';
+export type AnimationTheme = 'birthday' | 'fathersday' | 'wedding' | 'balloon' | 'christmas' | 'generic';
 
 /**
  * Factory for creating gift reveal animations based on theme
@@ -32,6 +33,9 @@ export class AnimationFactory {
       case 'balloon':
         return new BalloonAnimation();
 
+      case 'christmas':
+        return new ChristmasAnimation();
+
       case 'generic':
       default:
         // Default to birthday animation for generic/unknown types
@@ -44,6 +48,6 @@ export class AnimationFactory {
    * Get list of all available themes
    */
   static getAvailableThemes(): AnimationTheme[] {
-    return ['birthday', 'fathersday', 'wedding', 'balloon', 'generic'];
+    return ['birthday', 'fathersday', 'wedding', 'balloon', 'christmas', 'generic'];
   }
 }

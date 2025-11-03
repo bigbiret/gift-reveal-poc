@@ -59,6 +59,18 @@
     "isOpened": false,
     "isActivated": false
   },
+  "TESTJUL": {
+    "id": "550e8400-e29b-41d4-a716-446655440005",
+    "vendorName": "Elkjøp",
+    "vendorLogoUrl": "/images/vendors/placeholder-logo.svg",
+    "amount": 1500,
+    "currency": "NOK",
+    "personalMessage": "God jul! 🎄🎅 Kos deg med julegaven!",
+    "senderName": "Nissen",
+    "animationType": "christmas",
+    "isOpened": false,
+    "isActivated": false
+  },
   "TESTERR1": {
     "error": "Dette gavekortet finnes ikke"
   },
